@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Product;
+use App\ShoppingCart;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ShoppingCartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products');
-    }
-
-    public function findByCategory($category_id){
-        $category = Category::find($category_id);
-
-        $products = Product::whereHas('categories', function ($q) use ($category_id){
-            $q->where('id', $category_id);
-        })->paginate(5);
-
-        return view ('products', compact('products', 'category'));
+        //
     }
 
     /**
@@ -52,23 +41,21 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product, $productId)
+    public function show(ShoppingCart $shoppingCart)
     {
-        $viewProduct = $product::find($productId);
-
-        return view('product', compact('viewProduct'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(ShoppingCart $shoppingCart)
     {
         //
     }
@@ -77,10 +64,10 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  \App\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, ShoppingCart $shoppingCart)
     {
         //
     }
@@ -88,10 +75,10 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \App\ShoppingCart  $shoppingCart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(ShoppingCart $shoppingCart)
     {
         //
     }

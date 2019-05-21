@@ -2,6 +2,10 @@
 
 @section('content')
 
-<p>hallo</p>
+    @foreach($products as $product)
+        <img src="{{$product->image_url}}">
+        <h1><a href="/product/viewproduct/{{$product->id}}">{{$product->name}}</a></h1>
+
+    @endforeach
 
 @endsection

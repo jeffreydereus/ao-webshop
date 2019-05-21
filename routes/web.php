@@ -19,6 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('category', 'CategoryController');
+Route::resource('category', 'CategoryController')->parameters([
+    'category' => 'id'
+]);
+
+Route::get('/product/showproducts/{categoryid}', 'ProductController@findByCategory')->name('product.findbycat');
+Route::get('/product/viewproduct/{productid}', 'ProductController@show')->name('product.viewprod');
 
 Route::resource('product', 'ProductController');

@@ -3,10 +3,8 @@
 @section('content')
 
 @foreach($categories as $category)
-    <p>{{ $category->name }}</p>
-    @foreach($category->products as $prod)
-        <p>{{ $prod->name }}</p>
-    @endforeach
+    <a href="/product/showproducts/{{$category->id}}">{{ $category->name }}</a>
+
 @endforeach
     {{ $categories->links() }}
 
