@@ -16,7 +16,7 @@ class ShoppingCart
             }
         }
 
-        return view('cart.index', compact('totalPrice'));
+        return view('shoppingCart', compact('totalPrice'));
     }
 
     public static function addProductToShoppingCart($id){

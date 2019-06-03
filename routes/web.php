@@ -27,3 +27,10 @@ Route::get('/product/showproducts/{categoryid}', 'ProductController@findByCatego
 Route::get('/product/viewproduct/{productid}', 'ProductController@show')->name('product.viewprod');
 
 Route::resource('product', 'ProductController');
+
+Route::get('/shoppingcart', 'ShoppingCartController@getShoppingCart')->name('cart.index');
+
+Route::get('/shoppingcart/add/{id}', 'ShoppingCartController@addProductToShoppingCart')->name('cart.addProduct');
+
+Route::get('/shoppingcart/addqty/{id}', 'ShoppingCartController@addProductQty')->name('cart.addQty');
+Route::get('/shoppingcart/removeproduct/{id}', 'ShoppingCartController@removeProduct')->name('cart.removeProduct');

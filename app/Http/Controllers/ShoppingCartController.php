@@ -1,85 +1,35 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use App\ShoppingCart;
 use Illuminate\Http\Request;
+use App\Product;
+//use App\Order;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+//use App\OrderProducts;
+use App\ShoppingCart;
 
 class ShoppingCartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getShoppingCart()
     {
-        //
+        return ShoppingCart::getShoppingCart();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    //add products to the cart
+    public function addProductToShoppingCart($id)
     {
-        //
+        return ShoppingCart::addProductToShoppingCart($id);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    //remove products from card if ammount is 0, else remove the products
+    public function removeProduct($id)
     {
-        //
+        return ShoppingCart::removeProduct($id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ShoppingCart  $shoppingCart
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ShoppingCart $shoppingCart)
+    //increase selected products quantity
+    public function addProductQty($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ShoppingCart  $shoppingCart
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ShoppingCart $shoppingCart)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ShoppingCart  $shoppingCart
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ShoppingCart $shoppingCart)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ShoppingCart  $shoppingCart
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ShoppingCart $shoppingCart)
-    {
-        //
+        return ShoppingCart::addProductQty($id);
     }
 }
