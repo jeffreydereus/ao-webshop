@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'CategoryController@index');
 
 Auth::routes();
 
@@ -22,7 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('category', 'CategoryController')->parameters([
     'category' => 'id'
 ]);
-
+Route::get('/products', 'ProductController@showproducts')->name('product.index');
 Route::get('/product/showproducts/{categoryid}', 'ProductController@findByCategory')->name('product.findbycat');
 Route::get('/product/viewproduct/{productid}', 'ProductController@show')->name('product.viewprod');
 
@@ -34,3 +32,5 @@ Route::get('/shoppingcart/add/{id}', 'ShoppingCartController@addProductToShoppin
 
 Route::get('/shoppingcart/addqty/{id}', 'ShoppingCartController@addProductQty')->name('cart.addQty');
 Route::get('/shoppingcart/removeproduct/{id}', 'ShoppingCartController@removeProduct')->name('cart.removeProduct');
+
+Route::get('/placeorder', 'orderController@placeOrder')->name('order.place');

@@ -28,6 +28,13 @@ class ProductController extends Controller
         return view ('products', compact('products', 'category'));
     }
 
+    public function showproducts(){
+        $products = Product::all();
+
+        return view ('products', compact('products'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

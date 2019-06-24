@@ -1,11 +1,44 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Session;
+
 
 class orderController extends Controller
 {
+
+    public function placeOrder(){
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+        if (!Session::get('cart')) {
+            return redirect()->back()->with('message', "U kunt geen leeg winkelmandje kopen");
+        }
+
+        $totalPrice = 0;
+        foreach (Session::get('cart') as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+        }
+        $order = new Order();
+        $order->name = Auth::id() . "-" . date('d') . date('m') . date('y') . "-" . date('hi');
+        $order->user_id = Auth::id();
+        $order->total_price = $totalPrice;
+        $order->save();
+
+        foreach(Session::get('cart') as $item) {
+            $order->products()->attach($item['id']);
+        }
+
+        Session::forget('cart');
+
+        return redirect('/');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +46,15 @@ class orderController extends Controller
      */
     public function index()
     {
-        //
+        if(!Auth::check()) {
+            return redirect('/');
+        }
+
+        $user = Auth::user();
+        $orders = $user->orders()->get();
+
+        return view('home', compact('orders'));
+
     }
 
     /**

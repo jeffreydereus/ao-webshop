@@ -38,7 +38,7 @@
             </table>
 
             <h3>Total price: € {{$totalPrice}}</h3>
-{{--            <a class="btn btn-primary" href="{{route('order.place')}}">Confirm Order</a>--}}
+            <a class="btn btn-primary" href="{{route('order.place')}}">Betaal</a>
 
         @else
             <h5>Your cart is empty</h5>
