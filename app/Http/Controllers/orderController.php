@@ -53,7 +53,7 @@ class orderController extends Controller
         $user = Auth::user();
         $orders = $user->orders()->get();
 
-        return view('home', compact('orders'));
+        return view('orders', compact('orders'));
 
     }
 
